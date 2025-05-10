@@ -1,0 +1,13 @@
+services:
+  microemulator:
+    container_name: microemulator
+    build: .
+    image: microemulator-novnc-arm:latest
+    ports:
+      - "6080:6080"  # noVNC Web Interface
+      - "5900:5900"  # VNC Server
+    environment:
+      DISPLAY: ":0"
+    volumes:
+      - ./app:/microemulator/app  # Mount thư mục chứa file .jar
+    restart: unless-stopped
